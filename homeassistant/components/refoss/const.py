@@ -22,6 +22,8 @@ MAX_ERRORS = 2
 
 # Energy monitoring
 SENSOR_EM = "em"
+SENSOR_EM_SWITCH = "em_switch"
+
 
 CHANNEL_DISPLAY_NAME: dict[str, dict[int, str]] = {
     "em06": {
