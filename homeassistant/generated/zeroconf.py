@@ -579,6 +579,10 @@ ZEROCONF = {
             "name": "rainmachine*",
         },
         {
+            "domain": "refoss_rpc",
+            "name": "refoss*",
+        },
+        {
             "domain": "shelly",
             "name": "shelly*",
         },
