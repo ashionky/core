@@ -33,7 +33,6 @@ from .const import (
     DISPATCH_DEVICE_DISCOVERED,
     DOMAIN,
     SENSOR_EM,
-    SENSOR_EM_SWITCH,
 )
 from .entity import RefossEntity
 
@@ -49,7 +48,6 @@ class RefossSensorEntityDescription(SensorEntityDescription):
 DEVICETYPE_SENSOR: dict[str, str] = {
     "em06": SENSOR_EM,
     "em16": SENSOR_EM,
-    "r11": SENSOR_EM_SWITCH,
 }
 
 SENSORS: dict[str, tuple[RefossSensorEntityDescription, ...]] = {
@@ -113,48 +111,6 @@ SENSORS: dict[str, tuple[RefossSensorEntityDescription, ...]] = {
             fn=lambda x: abs(x) if x < 0 else 0,
         ),
     ),
-    SENSOR_EM_SWITCH: (
-        RefossSensorEntityDescription(
-            key="power",
-            translation_key="power",
-            device_class=SensorDeviceClass.POWER,
-            state_class=SensorStateClass.MEASUREMENT,
-            native_unit_of_measurement=UnitOfPower.WATT,
-            suggested_display_precision=2,
-            subkey="power",
-            fn=lambda x: x / 1000.0,
-        ),
-        RefossSensorEntityDescription(
-            key="voltage",
-            translation_key="voltage",
-            device_class=SensorDeviceClass.VOLTAGE,
-            state_class=SensorStateClass.MEASUREMENT,
-            native_unit_of_measurement=UnitOfElectricPotential.MILLIVOLT,
-            suggested_display_precision=2,
-            suggested_unit_of_measurement=UnitOfElectricPotential.VOLT,
-            subkey="voltage",
-        ),
-        RefossSensorEntityDescription(
-            key="current",
-            translation_key="current",
-            device_class=SensorDeviceClass.CURRENT,
-            state_class=SensorStateClass.MEASUREMENT,
-            native_unit_of_measurement=UnitOfElectricCurrent.MILLIAMPERE,
-            suggested_display_precision=2,
-            suggested_unit_of_measurement=UnitOfElectricCurrent.AMPERE,
-            subkey="current",
-        ),
-        RefossSensorEntityDescription(
-            key="energy",
-            translation_key="this_month_energy",
-            device_class=SensorDeviceClass.ENERGY,
-            state_class=SensorStateClass.TOTAL,
-            native_unit_of_measurement=UnitOfEnergy.WATT_HOUR,
-            suggested_display_precision=2,
-            subkey="mConsume",
-            fn=lambda x: max(0, x),
-        ),
-    ),
 }
 
 
@@ -214,7 +170,7 @@ class RefossSensor(RefossEntity, SensorEntity):
         self.entity_description = description
         self._attr_unique_id = f"{super().unique_id}{description.key}"
         device_type = coordinator.device.device_type
-        channel_name = CHANNEL_DISPLAY_NAME.get(device_type, {}).get(channel, "")
+        channel_name = CHANNEL_DISPLAY_NAME[device_type][channel]
         self._attr_translation_placeholders = {"channel_name": channel_name}
 
     @property
