@@ -89,7 +89,7 @@ class RefossEntityDescription(EntityDescription):
 
 
 class RefossEntity(CoordinatorEntity[RefossCoordinator]):
-    """Helper class to represent a  entity."""
+    """Helper class to represent a entity."""
 
     def __init__(self, coordinator: RefossCoordinator, key: str) -> None:
         """Initialize Refoss entity."""
@@ -148,7 +148,7 @@ class RefossEntity(CoordinatorEntity[RefossCoordinator]):
 
 
 class RefossAttributeEntity(RefossEntity, Entity):
-    """Helper class to represent a  attribute."""
+    """Helper class to represent a attribute."""
 
     entity_description: RefossEntityDescription
 

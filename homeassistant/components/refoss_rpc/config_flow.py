@@ -45,10 +45,7 @@ async def validate_input(
     info: dict[str, Any],
     data: dict[str, Any],
 ) -> dict[str, Any]:
-    """Validate the user input allows us to connect.
-
-    Data has the keys from CONFIG_SCHEMA with values provided by the user.
-    """
+    """Validate the user input allows us to connect."""
     options = ConnectionOptions(
         ip_address=host,
         username=data.get(CONF_USERNAME),

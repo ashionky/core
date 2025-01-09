@@ -76,7 +76,6 @@ class RefossCoordinatorBase(DataUpdateCoordinator[None]):
         self.device_id: str | None = None
         device_name = device.name if device.initialized else entry.title
         interval_td = timedelta(seconds=update_interval)
-        # The device has come online at least once.
         self._came_online_once = False
         super().__init__(hass, LOGGER, name=device_name, update_interval=interval_td)
 
@@ -110,7 +109,7 @@ class RefossCoordinatorBase(DataUpdateCoordinator[None]):
 
     @property
     def hw_version(self) -> str:
-        """Firmware version of the device."""
+        """Hardware version of the device."""
         return self.device.hw_version if self.device.initialized else ""
 
     def async_setup(self) -> None:
@@ -162,8 +161,6 @@ class RefossCoordinatorBase(DataUpdateCoordinator[None]):
 
     async def async_shutdown_device_and_start_reauth(self) -> None:
         """Shutdown Refoss device and start reauth flow."""
-        # not running disconnect events since we have auth error
-        # and won't be able to send commands to the device
         self.last_update_success = False
         await self.shutdown()
         self.entry.async_start_reauth(self.hass)
