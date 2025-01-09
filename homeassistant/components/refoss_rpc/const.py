@@ -46,5 +46,5 @@ ENTRY_RELOAD_COOLDOWN = 60
 
 OTA_BEGIN = "ota_begin"
 OTA_ERROR = "ota_error"
-OTA_PROGRESS = "OTA_PROGRESS"
+OTA_PROGRESS = "ota_progress"
 OTA_SUCCESS = "ota_success"
