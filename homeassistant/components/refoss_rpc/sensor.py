@@ -57,7 +57,6 @@ REFOSS_SENSORS: Final = {
         suggested_display_precision=2,
         device_class=SensorDeviceClass.VOLTAGE,
         state_class=SensorStateClass.MEASUREMENT,
-        entity_registry_enabled_default=False,
     ),
     "current": RefossSensorDescription(
         key="switch",
@@ -68,7 +67,6 @@ REFOSS_SENSORS: Final = {
         suggested_display_precision=2,
         device_class=SensorDeviceClass.CURRENT,
         state_class=SensorStateClass.MEASUREMENT,
-        entity_registry_enabled_default=False,
     ),
     "energy": RefossSensorDescription(
         key="switch",
