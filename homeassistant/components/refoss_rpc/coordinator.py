@@ -57,7 +57,7 @@ class RefossEntryData:
     poll_coordinator: RefossPollingCoordinator | None = None
 
 
-type RefossConfigEntry = ConfigEntry[RefossEntryData]
+RefossConfigEntry = ConfigEntry[RefossEntryData]
 
 
 class RefossCoordinatorBase(DataUpdateCoordinator[None]):

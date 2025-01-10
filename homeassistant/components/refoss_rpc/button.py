@@ -25,7 +25,7 @@ from .coordinator import RefossConfigEntry, RefossCoordinator
 
 
 @dataclass(frozen=True, kw_only=True)
-class RefossButtonDescription[RefossCoordinator](ButtonEntityDescription):
+class RefossButtonDescription(ButtonEntityDescription):
     """Class to describe a Button entity."""
 
     press_action: Callable[[RefossCoordinator], Coroutine[Any, Any, None]]
@@ -101,12 +101,12 @@ async def async_setup_entry(
 class RefossButton(CoordinatorEntity[RefossCoordinator], ButtonEntity):
     """Refoss button entity."""
 
-    entity_description: RefossButtonDescription[RefossCoordinator]
+    entity_description: RefossButtonDescription
 
     def __init__(
         self,
         coordinator: RefossCoordinator,
-        description: RefossButtonDescription[RefossCoordinator],
+        description: RefossButtonDescription,
     ) -> None:
         """Initialize Refoss button."""
         super().__init__(coordinator)
