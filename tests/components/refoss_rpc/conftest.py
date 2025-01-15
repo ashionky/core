@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant
 from tests.common import async_capture_events
 
 MOCK_CONFIG = {
-    "input:1": {"id": 1, "name": "Test name input", "type": "button"},
+    "input:1": {"id": 1, "name": "test input", "type": "button"},
     "switch:1": {"id": 1, "name": "test switch"},
     "wifi": {"sta_1": {"enable": True}, "sta_2": {"enable": False}},
 }
@@ -22,8 +22,8 @@ MOCK_REFOSS_DEVICE = {
     "mac": "test-mac",
     "model": "r11",
     "dev_id": "refoss-r11-743af4da2f5a",
-    "fw_ver": "1.0.0",
-    "hw_ver": "1.0.1",
+    "fw_ver": "1",
+    "hw_ver": "1",
     "auth_en": False,
 }
 
@@ -43,7 +43,7 @@ MOCK_STATUS = {
         "temperature": {"tc": 22.0},
         "restart_required": False,
         "uptime": 100,
-        "available_updates": {"version": "12.0.1"},
+        "available_updates": {"version": "2"},
     },
     "wifi": {"rssi": -30},
 }
@@ -62,11 +62,10 @@ def _mock_rpc_device():
         config=MOCK_CONFIG,
         event={},
         refoss=MOCK_REFOSS_DEVICE,
-        version="1.0.0",
         hostname="test-host",
         status=MOCK_STATUS,
-        firmware_version="firmware_version",
-        hw_version="hw_version",
+        firmware_version="1",
+        hw_version="1",
         initialized=True,
         connected=True,
         model="r11",
